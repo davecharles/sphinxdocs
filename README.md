@@ -93,3 +93,5 @@ $ man <path-to-repo-folder>/build/man/Amaze-Docs-docs.1
 - Dockerfile: Nginx and built html. Sniff local volume for updates.
 - Docker-compose yaml file
 - Implement make targets for docker compose
+- Add multiple man pages i.e. for each "chapter"
+- Make tooling to install man pages
