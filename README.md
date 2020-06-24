@@ -85,5 +85,11 @@ $ make man
 Publishes the man pages to `build/man`. In a terminal enter:
 
 ```bash
-$ man <path-to-repo-folder>/build/man/Amaze-Docs-docs.1`.
+$ man <path-to-repo-folder>/build/man/Amaze-Docs-docs.1
 ```
+
+## To Do
+
+- Dockerfile: Nginx and built html. Sniff local volume for updates.
+- Docker-compose yaml file
+- Implement make targets for docker compose
