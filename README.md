@@ -8,7 +8,7 @@ documentation site using
 The documents are built using [Sphinx](https://www.sphinx-doc.org/en/master) and
 the [Read the Docs](https://sphinx-rtd-theme.readthedocs.io) theme.
 
-_Yummy screen shot here_
+![alt text](source/_static/screenshot.png "Screen shot of Sphinx Docs")
 
 ## Getting Started
 
