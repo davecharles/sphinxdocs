@@ -21,13 +21,17 @@ $ cd sphinxdocs
 
 ### Docker Compose
 
-Build the docker image using docker-compose (recommended).
+Using docker-compose is recommended to get started quickly.
 
 ```bash
 $ make compose-build
 $ make compose-up    # run detached
 $ make compose-down  # for when you're done
 ```
+
+Once up, navigate a browser to `http://localhost:8000`. Edit markdown
+documents as required. Refresh browser to view and automatically regenerated
+build.
 
 The `docker-compose.yml` specifies two services:
 
@@ -37,11 +41,11 @@ The `docker-compose.yml` specifies two services:
   `inotifywait` to detect source changes so a re-build can be invoked. This
    means you can update the source without restarting the services.
 
-Once up, navigate a browser to `http://localhost:8000`. Edit markdown
-documents as required. Refresh browser to see automatically regenerated build.
+### Building locally
+You'll need a suitable Python environment with the dependencies from
+`requirements.txt` installed. Run `make` with no args to see a complete list
+of project and Sphinx targets.
 
-### Build locally
-Run `make` with no args to see a complete list of project and Sphinx targets.    
 ```bash
 $ make
 == Targets =========================================================
@@ -80,18 +84,18 @@ Please use `make target' where target is one of
   coverage    to run coverage check of the documentation (if enabled)
 ```
 
-#### HTML 
+#### Build HTML
 ```bash
 $ make html
 ```
-Publishes the documentation set to `build/html`. Navigate a browser to
+This publishes the documentation set to `build/html`. Navigate a browser to
 `file:///<path-to-repo-folder>/build/html/index.html`.
 
-#### Man Pages
+#### Build Man Pages
 ```bash
 $ make man
 ```
-Publishes the man pages to `build/man`. In a terminal enter:
+This publishes the man pages to `build/man`. In a terminal enter:
 
 ```bash
 $ man <path-to-repo-folder>/build/man/Amaze-Docs-docs.1
