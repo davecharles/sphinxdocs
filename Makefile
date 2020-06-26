@@ -6,6 +6,8 @@ SPHINXOPTS    = -j auto
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+UNAME := $(shell uname -s)
+COMPOSE ?= docker-compose
 
 help:
 	@echo "== Targets ========================================================="
@@ -21,11 +23,23 @@ help:
 clean:
 	rm -rf build/
 
+ifeq ($(UNAME), Linux)
+watch:
+	$(MAKE) html
+	while inotifywait -re modify /mnt/app; do $(MAKE) html; done
+else
+watch:
+	@echo "ERROR: watch target not supported on $(UNAME)"
+endif
+
 compose-build:
-	@echo "compose-build not implemented"
+	$(COMPOSE) build
 
 compose-up:
-	@echo "compose-up not implemented"
+	$(COMPOSE) up -d
+
+compose-down:
+	$(COMPOSE) down
 
 %:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

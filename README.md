@@ -25,12 +25,20 @@ Build the docker image using docker-compose (recommended).
 
 ```bash
 $ make compose-build
-$ make compose-up
+$ make compose-up    # run detached
+$ make compose-down  # for when you're done
 ```
 
-The `docker-compose.yml` builds the publishes the documentation set and spins
-up `nginx` to host the flat-file site. Navigate a browser to
-`http://localhost:8000`. 
+The `docker-compose.yml` specifies two services:
+
+- `doc-nginx` to host the documentation set.
+- `doc-sphinx` that invokes `make watch` which uses the
+  [inotify-tools](https://github.com/inotify-tools/inotify-tools/wiki)
+  `inotifywait` to detect source changes so a re-build can be invoked. This
+   means you can update the source without restarting the services.
+
+Once up, navigate a browser to `http://localhost:8000`. Edit markdown
+documents as required. Refresh browser to see automatically regenerated build.
 
 ### Build locally
 Run `make` with no args to see a complete list of project and Sphinx targets.    
@@ -38,9 +46,10 @@ Run `make` with no args to see a complete list of project and Sphinx targets.
 $ make
 == Targets =========================================================
 Use make with one of the following general targets:
-clean                      - Clean generated files
-compose-build              - Docker compose build
-compose-up                 - Docker compose up
+clean                      - Clean generated build files
+compose-build              - Build docker compose services
+compose-up                 - Bring up services
+compose-down               - Shutdown services
 
 == Sphinx specific targets =========================================
 Use make with one of the following SPHINX targets:
@@ -90,8 +99,5 @@ $ man <path-to-repo-folder>/build/man/Amaze-Docs-docs.1
 
 ## To Do
 
-- Dockerfile: Nginx and built html. Sniff local volume for updates.
-- Docker-compose yaml file
-- Implement make targets for docker compose
 - Add multiple man pages i.e. for each "chapter"
 - Make tooling to install man pages
