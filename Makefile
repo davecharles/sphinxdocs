@@ -6,6 +6,7 @@ SPHINXOPTS    = -j auto
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+
 UNAME := $(shell uname -s)
 COMPOSE ?= docker-compose
 
@@ -21,7 +22,7 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
-	rm -rf build/
+	@rm -rf build/
 
 ifeq ($(UNAME), Linux)
 watch:
@@ -36,10 +37,20 @@ compose-build:
 	$(COMPOSE) build
 
 compose-up:
-	$(COMPOSE) up -d
+	@$(COMPOSE) up -d
+	@$(MAKE) clean
 
 compose-down:
-	$(COMPOSE) down
+	@$(COMPOSE) down
+
+compose-logs:
+	@$(COMPOSE) logs -f
+
+compose-logs-sphinx:
+	@$(COMPOSE) logs -f doc-sphinx
+
+compose-logs-nginx:
+	@$(COMPOSE) logs -f doc-nginx
 
 %:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
