@@ -38,10 +38,9 @@ compose-build:
 
 compose-up:
 	@$(COMPOSE) up -d
-	@$(MAKE) clean
 
 compose-down:
-	@$(COMPOSE) down
+	@$(COMPOSE) down -v
 
 compose-logs:
 	@$(COMPOSE) logs -f
