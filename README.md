@@ -30,7 +30,7 @@ $ make compose-down  # for when you're done
 ```
 
 Once up, navigate a browser to `http://localhost:8000`. Edit markdown
-documents as required. Refresh browser to view and automatically regenerated
+documents as required. Refresh browser to view an automatically regenerated
 build.
 
 The `docker-compose.yml` specifies two services:
@@ -42,7 +42,7 @@ The `docker-compose.yml` specifies two services:
    means you can update the source without restarting the services.
 
 ### Building locally
-You'll need a suitable Python environment with the dependencies from
+You'll need a suitable Python environment with the dependencies defined in
 `requirements.txt` installed. Run `make` with no args to see a complete list
 of project and Sphinx targets.
 
